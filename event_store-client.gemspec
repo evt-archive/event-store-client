@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'event_store-client'
-  s.version = '0.1.2'
+  s.version = '0.1.3'
   s.summary = 'Common code for the EventStore client'
   s.description = ' '
 
