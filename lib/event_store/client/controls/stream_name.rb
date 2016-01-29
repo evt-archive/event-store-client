@@ -12,10 +12,10 @@ module EventStore
           random = true if random.nil?
 
           if random
-            category_name = "#{category}#{Identifier::UUID.random.gsub('-', '')}"
+            category = "#{category}#{Identifier::UUID.random.gsub('-', '')}"
           end
 
-          "#{category_name}-#{id}"
+          "#{category}-#{id}"
         end
       end
     end
