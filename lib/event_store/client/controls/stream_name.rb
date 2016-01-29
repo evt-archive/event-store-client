@@ -9,7 +9,7 @@ module EventStore
         def self.get(category=nil, id=nil, random: nil)
           category ||= 'test'
           id ||= Identifier::UUID.random
-          random ||= true
+          random = true if random.nil?
 
           if random
             category_name = "#{category}#{Identifier::UUID.random.gsub('-', '')}"
