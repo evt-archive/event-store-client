@@ -24,7 +24,18 @@ module EventStore
       end
 
       def self.get_id(stream_name)
-        Identifier::UUID.parse(stream_name)
+        _, stream_id = split stream_name
+        stream_id
+      end
+
+      def self.split(stream_name)
+        if stream_name.start_with? '$ce-'
+          _, category = stream_name.split '-', 2
+        else
+          category, stream_id = stream_name.split '-', 2
+        end
+
+        return category, stream_id
       end
     end
   end

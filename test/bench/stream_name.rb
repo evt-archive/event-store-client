@@ -38,17 +38,22 @@ context "Category Stream Name" do
   end
 end
 
-context "Stream ID" do
-  test "Is the UUID portion of a full stream name" do
-    id = Identifier::UUID.random
+context "Get Stream ID" do
+  test "Is the remainder of the full stream name after the first dash" do
+    id = 'some-id'
     stream_name = "someStream-#{id}"
 
     stream_id = Fixtures::StreamName.get_id stream_name
     assert(stream_id == id)
   end
 
-  test "Is nil if there is no type 4 UUID in the stream name" do
+  test "Is nil if there is no hyphen in the full stream name" do
     stream_id = Fixtures::StreamName.get_id 'someStream'
+    assert(stream_id.nil?)
+  end
+
+  test "Is nil for category streams" do
+    stream_id = Fixtures::StreamName.get_id '$ce-someStream'
     assert(stream_id.nil?)
   end
 end
