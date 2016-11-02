@@ -57,3 +57,19 @@ context "Get Stream ID" do
     assert(stream_id.nil?)
   end
 end
+
+context "Get Category" do
+  test "Is the part of the full stream name preceding the first dash" do
+    id = 'some-id'
+    stream_name = "someStream-#{id}"
+
+    category = Fixtures::StreamName.get_category stream_name
+
+    assert(category == "someStream")
+  end
+
+  test "Is the remainder after the prefix for category streams" do
+    category = Fixtures::StreamName.get_category '$ce-someStream'
+    assert(category == 'someStream')
+  end
+end

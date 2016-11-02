@@ -28,6 +28,11 @@ module EventStore
         stream_id
       end
 
+      def self.get_category(stream_name)
+        category, _ = split stream_name
+        category
+      end
+
       def self.split(stream_name)
         if stream_name.start_with? '$ce-'
           _, category = stream_name.split '-', 2
